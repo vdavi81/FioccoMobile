@@ -1,0 +1,18 @@
+About the timeout, its simple to solve.
+
+Go to:
+\platforms\android\cordova\node_modules\q
+
+Locate:
+var timeoutId = setTimeout(function () {
+deferred.reject(new Error(message || “Timed out after " + ms + " ms”));
+}, ms);
+
+Change to:
+var timeoutId = setTimeout(function () {
+deferred.reject(new Error(message || “Timed out after " + ms + " ms”));
+}, 10000000);
+
+Run! You’ll see dependencies being installed. Thats why time was running out! #bug
+
+After all, you can undo the changes.
